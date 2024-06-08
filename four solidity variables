@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+contract SimpleContract {
+    uint public intValue;
+    string public stringValue;
+    address public addressValue;
+    bool public boolValue;
+
+    function setInt(uint _value) public returns (uint) {
+        intValue = _value;
+        return intValue;
+    }
+
+    function getInt() public view returns (uint) {
+        return intValue;
+    }
+
+    function setString(string memory _value) public returns (string memory) {
+        stringValue = _value;
+        return stringValue;
+    }
+
+    function getString() public view returns (string memory) {
+        return stringValue;
+    }
+
+    function setAddress(address _value) public returns (address) {
+        addressValue = _value;
+        return addressValue;
+    }
+
+    function getAddress() public view returns (address) {
+        return addressValue;
+    }
+
+    function setBool(bool _value) public returns (bool) {
+        boolValue = _value;
+        return boolValue;
+    }
+
+    function getBool() public view returns (bool) {
+        return boolValue;
+    }
+}
+
+
