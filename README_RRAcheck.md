@@ -40,8 +40,7 @@ Once you are on the Remix website, create a new file by clicking on the "+" icon
     function testAssert() public view returns(uint){
         assert(num == 0);
          return 1+2;
-    }
-}
+    }}
 
 
 To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.4" (or another compatible version), and then click on the "Compile HelloWorld.sol" button.
