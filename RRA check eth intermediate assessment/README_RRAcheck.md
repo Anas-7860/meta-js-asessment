@@ -1,9 +1,9 @@
 # Using require revert and assert for error handling 
 
-The `RRAcheck` contract in Solidity demonstrates the use of `require`, `revert`, and `assert` statements for error handling. This code helps understand the use of error handling by require revert and assert statement.
+The `crowdfunding` contract in Solidity demonstrates the use of `require`, `revert`, and `assert` statements for error handling. This code helps understand the use of error handling by require revert and assert statement.
 
 ## Description
-The `RRAcheck` Solidity contract includes three functions to demonstrate error handling mechanisms. The `testRequire` function uses the `require` statement to ensure the input `_i` is greater than 10, otherwise, it throws an error. The `testRevert` function achieves the same input check using the `revert` statement within an `if` condition. The `testAssert` function uses the `assert` statement to check if the state variable `num` is 0, which will fail since `num` is set to 1, demonstrating the use of `assert` for conditions that should never occur in normal execution.
+This Solidity contract implements a crowdfunding platform where an organizer sets a funding goal and a deadline. Contributors can donate funds until the deadline. The organizer can cancel the project if no funds are raised or withdraw funds if the goal is met after the deadline.
 
 ### Installing
 You can see my program on github at - https://github.com/Anas-7860/meta-js-asessment/blob/main/revert%20assert%20require%20check
