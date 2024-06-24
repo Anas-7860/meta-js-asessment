@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+// Interface IVoting
+interface IVoting {
+    function vote(uint candidateId) external;
+    function getVotes(uint candidateId) external view returns (uint);
+}
+
+// Abstract Contract AbstractVoting
+abstract contract AbstractVoting {
+    uint public totalCandidates;
+    mapping(uint => uint) public votes;
+
+    constructor(uint _totalCandidates) {
+        totalCandidates = _totalCandidates;
+    }
+
+    function vote(uint candidateId) public virtual;
+    function getVotes(uint candidateId) public view virtual returns (uint);
+}
+
+// Implementation Contract Voting
+contract Voting is AbstractVoting, IVoting {
+    constructor(uint _totalCandidates) AbstractVoting(_totalCandidates) {}
+
+    function vote(uint candidateId) public override {
+        require(candidateId < totalCandidates, "Invalid candidate ID");
+        votes[candidateId] += 1;
+    }
+
+    function getVotes(uint candidateId) public view override returns (uint) {
+        require(candidateId < totalCandidates, "Invalid candidate ID");
+        return votes[candidateId];
+    }
+}
