@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract EtherReceiver {
+    // Event to log when Ether is received
+    event EtherReceived(address sender, uint256 amount);
+
+    // Fallback function is called when msg.data is not empty
+    fallback() external payable {
+        // Emit an event to log the received Ether
+        emit EtherReceived(msg.sender, msg.value);
+    }
+
+    // Receive function is called when msg.data is empty
+    receive() external payable {
+        // Emit an event to log the received Ether
+        emit EtherReceived(msg.sender, msg.value);
+    }
+
+    // Function to check the balance of the contract
+    function getBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
+    // Function to withdraw Ether from the contract
+    function withdraw(uint256 amount) public {
+        require(amount <= address(this).balance, "Insufficient balance");
+        payable(msg.sender).transfer(amount);
+    }
+}
