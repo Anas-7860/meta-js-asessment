@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+
+contract MyToken {
+
+    // public variables here
+    string public tokenName = "Zandacross";
+    string public tokenabbvr = "ZDRX";
+    uint public totalsupply = 0;
+
+    // mapping variable here
+   mapping(address => uint) public balance;
+    // mint function
+   function mint(address add, uint value)public{
+    totalsupply +=value;
+    balance[add] += value;
+   }
+    // burn function
+  function burn(address add, uint value)public{
+   
+    if(balance[add]>=value){
+    totalsupply -=value;
+    balance[add] -= value;
+   }
+   }
+}
