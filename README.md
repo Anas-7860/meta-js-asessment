@@ -18,7 +18,7 @@ Once you are on the Remix website, follow these steps:
 3. #### Compile the Code:
     - Click on the "Solidity Compiler" tab in the left-hand sidebar.
     - Ensure the "Compiler" option is set to "0.8.20" (or another compatible version).
-    - Click on the "Compile CryptoArtToken.sol" button.
+    - Click on the "Compile token.sol" button.
 4. #### Deploy the Contract:
     - Click on the "Deploy & Run Transactions" tab in the left-hand sidebar.
     - Select the "Zandacrosstoken" contract from the dropdown menu.
