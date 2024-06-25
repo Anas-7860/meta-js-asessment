@@ -1,7 +1,7 @@
 # Zandacross Token
 This Solidity program is an ERC20 token contract named "Zandacross tokne". It demonstrates the use of the OpenZeppelin library for creating a burnable ERC20 token with ownership capabilities. The purpose of this program is to serve as a starting point for those who are new to Solidity and want to get a feel for how to implement basic ERC20 token functionalities.
 ## Demo Video
-[Video Tutorial]()
+[Video Tutorial](https://www.loom.com/share/a97574e1a9ec48a292071586c8416669)
 ## Description
 This program is a smart contract written in Solidity, a programming language utilized for creating smart contracts on the Ethereum blockchain. The contract, "ZandacrossToken" builds upon the capabilities of OpenZeppelin's ERC20 and Ownable contracts. It encompasses functions for minting new tokens, burning tokens, and transferring tokens. This program acts as an entry point to more intricate Solidity programming through the utilization of OpenZeppelin's libraries and can serve as a groundwork for progressively sophisticated token contracts moving forward.
 ## Getting Started
