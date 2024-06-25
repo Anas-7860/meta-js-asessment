@@ -1,6 +1,6 @@
 # Zandacross Token Solidity Contract
 
-[Project Tutorial]("https://www.loom.com/share/f6562bcdeeab4bc8a4458004ff72b4dc")
+[Project Tutorial](https://www.loom.com/share/f6562bcdeeab4bc8a4458004ff72b4dc)
 
 This contract manages a custom token. It keeps track of balances for each user and the total supply. It allows creating new tokens (minting) for an address and destroying existing tokens (burning) from the sender's account.
 ## Description 
