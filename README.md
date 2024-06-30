@@ -9,10 +9,15 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
 
 ### procedure 
 *open remix and write a smart contract of degen tokens
+
 *now connect that smart contract to a metamask account selecting inject with metamask wallet
+
 *copy the address and paste it on snowtrace 
+
 *it will show the activity of the smart contract connected with wallet
+
 *it will always ask for the cost and permission deploying and doing things 
+
 
 ### Executing program
       // SPDX-License-Identifier: MIT
