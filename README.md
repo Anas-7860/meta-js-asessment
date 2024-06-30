@@ -1,75 +1,75 @@
-# Zandacross Token Solidity Contract
+# Degen token verification using fuji network
 
-[Project Tutorial](https://www.loom.com/share/f6562bcdeeab4bc8a4458004ff72b4dc)
+The DegenTokens smart contract creates a custom ERC20 token on the Avalanche blockchain. It allows the owner to mint and reward tokens, track player rewards, facilitate player-to-player trading, and redeem tokens for in-game rewards. This enhances player engagement and loyalty within the Degen Gaming ecosystem.
 
-This contract manages a custom token. It keeps track of balances for each user and the total supply. It allows creating new tokens (minting) for an address and destroying existing tokens (burning) from the sender's account.
-## Description 
-The `MyToken` contract implements basic functionalities to handle a custom token on the Ethereum blockchain. It includes:
+## Description
 
-1.Stores token details (name, symbol, total supply) publicly.
-
-2.Tracks balances per address using a mapping.
-
-3.Mints new tokens for an address with `mint`.
-
-4.Burns tokens from an address (with balance check) with `burn`.
+In this we are verifying the smart contract using fuji network and snowtrace to tract the activity of the account of metamask
 
 
-This contract serves as a simple introduction to creating and managing custom tokens using Solidity.
+### procedure 
+open remix and write a smart contract of degen tokens
+now connect that smart contract to a metamask account selecting inject with metamask wallet
+copy the address and paste it on snowtrace 
+it will show the activity of the smart contract connected with wallet
+it will always ask for the cost and permission deploying and doing things 
 
-## Getting Started
-### Executing Program
-1. **Run on Remix IDE:** Use [Remix](https://remix.ethereum.org/) for online execution.
-2. **Create a new Solidity file:** Click "+" in the left sidebar, save as `.sol` (e.g., `MyToken.sol`).
-3. **Paste the code:** Copy and paste your Solidity code into the file.
+### Executing program
+      // SPDX-License-Identifier: MIT
+     // Compatible with OpenZeppelin Contracts ^5.0.0
+     pragma solidity ^0.8.20;
+
+    import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+    import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+    import "@openzeppelin/contracts/access/Ownable.sol";
+
+    contract DegenTokens is ERC20, ERC20Burnable, Ownable {
+    // Mapping to keep track of rewards for each player
+    mapping(address => uint256) private rewards;
+
+    constructor()
+        ERC20("DegenTokens", "DGN")
+        Ownable(msg.sender)
+    {}
+
+    // Function to mint new tokens, only callable by the owner
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+
+    // Function to reward players, only callable by the owner
+    function rewardPlayer(address player, uint256 amount) public onlyOwner {
+        rewards[player] += amount;
+        _mint(player, amount);
+    }
+
+    // Function to get the reward balance of a player
+    function getRewardBalance(address player) public view returns (uint256) {
+        return rewards[player];
+    }
+
+    // Function to allow players to trade tokens
+    function trade(address to, uint256 amount) public {
+        _transfer(msg.sender, to, amount);
+    }
+
+    // Function to redeem rewards (for example, in the in-game store)
+    function redeem(address player, uint256 amount) public onlyOwner {
+        require(rewards[player] >= amount, "Insufficient reward balance");
+        rewards[player] -= amount;
+        _burn(player, amount);
+    }}
+
+
 ```
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
-
-
-contract MyToken {
-
-    // public variables here
-    string public tokenName = "Zandacross";
-    string public tokenabbvr = "ZDRX";
-    uint public totalsupply = 0;
-
-    // mapping variable here
-   mapping(address => uint) public balance;
-    // mint function
-   function mint(address add, uint value)public{
-    totalsupply +=value;
-    balance[add] += value;
-   }
-    // burn function
-  function burn(address add, uint value)public{
-   
-    if(balance[add]>=value){
-    totalsupply -=value;
-    balance[add] -= value;
-   }
-   }
-}
-
-
-```
-4. **Gettin' it ready to run:** Head over to the "Solidity Compiler" tab on the left. Make sure the "Compiler" version is set to something that works with your code (like 0.8.25). Then, hit that "Compile MyToken.sol" button!
-
-5. **Deployment time!:** Now switch to the "Deploy & Run Transactions" tab. Find `MyToken` in the dropdown menu and click "Deploy" to unleash your contract to the world (well, a virtual world at least).
-
-6. **Let's play!:** Remix provides a cool interface to interact with your contract. Use it to call those `mint` and `burn` functions. Just fill in the info they need and hit the buttons to make it happen!
-
-## Help
-If you encounter any issues, ensure the following:
-1. The Solidity compiler version is set correctly.
-2. The address used in function calls is valid.
-3. The balance of the address is sufficient for burning tokens.
-
-For additional help, use the Remix documentation or community forums.   
 
 ## Authors
-Md Anas Khan
+
+Md Anas Kha
 
 anaskhan9501499079@gmail.com
+
+
 ## License
-This project is licensed under the MIT License.
+
+This project is licensed under the MIT License
