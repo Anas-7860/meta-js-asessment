@@ -66,7 +66,6 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
     }}
 
 
-```
 
 ## Authors
 
