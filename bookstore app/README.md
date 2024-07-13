@@ -10,6 +10,8 @@ This project is a decentralized bookstore application built with React and Ether
 
 After cloning the github, you will want to do the following to get the code running on your computer.
 
+open VS code to run the code locally or open gitpod to run the code on browser
+
 Inside the project directory, in the terminal type: npm i
 
 Open two additional terminals in your VS code
