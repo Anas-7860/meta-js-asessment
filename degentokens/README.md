@@ -21,8 +21,8 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
 
 ### Executing program
       // SPDX-License-Identifier: MIT
-     // Compatible with OpenZeppelin Contracts ^5.0.0
-     pragma solidity ^0.8.20;
+    // Compatible with OpenZeppelin Contracts ^5.0.0
+    pragma solidity ^0.8.20;
 
     import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
     import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
@@ -32,10 +32,10 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
     // Mapping to keep track of rewards for each player
     mapping(address => uint256) private rewards;
 
-    constructor()
-        ERC20("DegenTokens", "DGN")
-        Ownable(msg.sender)
-    {}
+    // Mapping to store items and their token costs
+    mapping(string => uint256) private itemCosts;
+
+    constructor() ERC20("DegenTokens", "DGN") Ownable(msg.sender) {}
 
     // Function to mint new tokens, only callable by the owner
     function mint(address to, uint256 amount) public onlyOwner {
@@ -58,12 +58,27 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
         _transfer(msg.sender, to, amount);
     }
 
+    // Function to set item costs, only callable by the owner
+    function setItemCost(string memory itemName, uint256 cost) public onlyOwner {
+        itemCosts[itemName] = cost;
+    }
+
+    // Function to get the cost of an item
+    function getItemCost(string memory itemName) public view returns (uint256) {
+        return itemCosts[itemName];
+    }
+
     // Function to redeem rewards (for example, in the in-game store)
-    function redeem(address player, uint256 amount) public onlyOwner {
-        require(rewards[player] >= amount, "Insufficient reward balance");
-        rewards[player] -= amount;
-        _burn(player, amount);
-    }}
+    function redeem(address player, string memory itemName) public onlyOwner {
+        uint256 itemCost = itemCosts[itemName];
+        require(itemCost > 0, "Item does not exist");
+        require(rewards[player] >= itemCost, "Insufficient reward balance");
+
+        rewards[player] -= itemCost;
+        _burn(player, itemCost);
+    }
+    }
+
 
 
 
