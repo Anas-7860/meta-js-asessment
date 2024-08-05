@@ -21,22 +21,25 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
 
 ### Executing program
      // SPDX-License-Identifier: MIT
-      // Compatible with OpenZeppelin Contracts ^5.0.0
-      pragma solidity ^0.8.20;
+     // Compatible with OpenZeppelin Contracts ^5.0.0
+     pragma solidity ^0.8.20;
 
      import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-      import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+     import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
      import "@openzeppelin/contracts/access/Ownable.sol";
 
-     contract DegenTokens is ERC20, ERC20Burnable, Ownable {
+    contract DegenTokens is ERC20, ERC20Burnable, Ownable {
     // Mapping to keep track of rewards for each player
     mapping(address => uint256) private rewards;
 
     // Mapping to store available rewards and their token costs
     mapping(string => uint256) public redeemableRewards;
-    
+
     // Array to store reward item names
     string[] public rewardItemNames;
+
+    // Mapping to keep track of redeemed items for each player
+    mapping(address => string[]) public redeemedItems;
 
     constructor(address initialOwner)
         ERC20("DegenTokens", "DGN")
@@ -60,7 +63,6 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
     // Function to reward players, only callable by the owner
     function rewardPlayer(address player, uint256 amount) public onlyOwner {
         rewards[player] += amount;
-        _mint(player, amount);
     }
 
     // Function to get the reward balance of a player
@@ -74,12 +76,11 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
     }
 
     // Function to redeem rewards (for example, in the in-game store)
-    function redeem(address player, string memory itemName) public onlyOwner {
+    function redeem(string memory itemName) public {
         uint256 cost = redeemableRewards[itemName];
-        require(rewards[player] >= cost, "Insufficient reward balance");
-        rewards[player] -= cost;
-        _burn(player, cost);
-        // Logic to grant the item to the player should be implemented here
+        require(rewards[msg.sender] >= cost, "Insufficient reward balance to redeem");
+        rewards[msg.sender] -= cost;
+        redeemedItems[msg.sender].push(itemName);
     }
 
     // Function to display redeemable rewards and their costs
@@ -96,7 +97,14 @@ In this we are verifying the smart contract using fuji network and snowtrace to 
         }
 
         return (rewardNames, rewardCosts);
-    }}
+    }
+
+    // Function to get the list of redeemed items for a player
+    function getRedeemedItems(address player) public view returns (string[] memory) {
+        return redeemedItems[player];
+    }
+    }
+
 
 
 
