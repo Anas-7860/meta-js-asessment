@@ -12,9 +12,12 @@ contract DegenTokens is ERC20, ERC20Burnable, Ownable {
 
     // Mapping to store available rewards and their token costs
     mapping(string => uint256) public redeemableRewards;
-    
+
     // Array to store reward item names
     string[] public rewardItemNames;
+
+    // Mapping to keep track of redeemed items for each player
+    mapping(address => string[]) public redeemedItems;
 
     constructor(address initialOwner)
         ERC20("DegenTokens", "DGN")
@@ -38,7 +41,6 @@ contract DegenTokens is ERC20, ERC20Burnable, Ownable {
     // Function to reward players, only callable by the owner
     function rewardPlayer(address player, uint256 amount) public onlyOwner {
         rewards[player] += amount;
-        _mint(player, amount);
     }
 
     // Function to get the reward balance of a player
@@ -52,12 +54,11 @@ contract DegenTokens is ERC20, ERC20Burnable, Ownable {
     }
 
     // Function to redeem rewards (for example, in the in-game store)
-    function redeem(address player, string memory itemName) public onlyOwner {
+    function redeem(string memory itemName) public {
         uint256 cost = redeemableRewards[itemName];
-        require(rewards[player] >= cost, "Insufficient reward balance");
-        rewards[player] -= cost;
-        _burn(player, cost);
-        // Logic to grant the item to the player should be implemented here
+        require(rewards[msg.sender] >= cost, "Insufficient reward balance to redeem");
+        rewards[msg.sender] -= cost;
+        redeemedItems[msg.sender].push(itemName);
     }
 
     // Function to display redeemable rewards and their costs
@@ -74,5 +75,10 @@ contract DegenTokens is ERC20, ERC20Burnable, Ownable {
         }
 
         return (rewardNames, rewardCosts);
+    }
+
+    // Function to get the list of redeemed items for a player
+    function getRedeemedItems(address player) public view returns (string[] memory) {
+        return redeemedItems[player];
     }
 }
