@@ -31,7 +31,7 @@ This project is designed to teach you how to create your own custom subnet using
     RPC URL:           http://127.0.0.1:9650/ext/bc/wPS2LEj9h6tLvbi3ZNLj6KfAi6yHc5sFKu3K6FPKc2qJvdFf1/rpc
     Funded address:    0x1122dE32476092fdd7E66b7FE89890E577ddD200 with 600 (10^18)
     Funded address:    0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC with 1000000 (10^18) - private key: 56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
-    Network name:      customSubnet
+    Network name:      newSubnet
     Chain ID:          12345
     Currency Symbol:   ZX
     ```
