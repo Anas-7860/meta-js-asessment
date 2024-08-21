@@ -33,7 +33,7 @@ This project is designed to teach you how to create your own custom subnet using
     Funded address:    0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC with 1000000 (10^18) - private key: 56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
     Network name:      customSubnet
     Chain ID:          12345
-    Currency Symbol:   ZCX
+    Currency Symbol:   ZX
     ```
 #### 7. Add Custom Network in MetaMask
   - Use the details from the output of the last command to add a custom network in MetaMask.
