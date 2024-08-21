@@ -2,7 +2,7 @@
 ## Project Description
 This project is designed to teach you how to create your own custom subnet using the Avalanche SubnetEVM. You will learn how to deploy this subnet to the local network and then deploy your own contracts to the custom subnet.
 ## Video Walkthrough
-https://www.loom.com/share/dc7785d974884dd88b1e81772418b727?sid=9e142f8f-4a53-4121-b935-230f8419ef02
+
 
 ## Steps to Run the Project
 ### Using Remix IDE and Terminal (Easier Way)
@@ -33,7 +33,7 @@ https://www.loom.com/share/dc7785d974884dd88b1e81772418b727?sid=9e142f8f-4a53-41
     Funded address:    0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC with 1000000 (10^18) - private key: 56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
     Network name:      customSubnet
     Chain ID:          12345
-    Currency Symbol:   CT
+    Currency Symbol:   ZCX
     ```
 #### 7. Add Custom Network in MetaMask
   - Use the details from the output of the last command to add a custom network in MetaMask.
@@ -51,6 +51,6 @@ https://www.loom.com/share/dc7785d974884dd88b1e81772418b727?sid=9e142f8f-4a53-41
   - Deposit some tokens and receive shares in return using `Vault.sol`.
     
 ## Contributors
-  - Metacrafter Lovish Garg (LinkedIn: [@LovishGarg](https://www.linkedin.com/in/lovish-garg-480b37249?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app))
+  - Metacrafter Md Anas Khan
 ## License
 This project is licensed under the MIT License.
